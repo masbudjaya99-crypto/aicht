@@ -28,11 +28,11 @@ export function HomeApp({ profiles, config }: { profiles: Profile[]; config: Pub
   }, [activeChip, deferredQuery, profiles]);
 
   return (
-    <main className="min-h-screen pb-24">
+    <main className="min-h-dvh pb-32 md:pb-24">
       <nav className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--bg)]/75 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:px-4">
           <div>
-            <div className="font-display text-3xl font-black gradient-text">{config.site_name}</div>
+            <div className="font-display text-2xl font-black gradient-text sm:text-3xl">{config.site_name}</div>
             <div className="hidden text-xs text-[var(--text2)] md:block">{config.site_tagline}</div>
           </div>
           <div className="flex items-center gap-2">
@@ -44,13 +44,13 @@ export function HomeApp({ profiles, config }: { profiles: Profile[]; config: Pub
         <NotificationBanner enabled={config.notification_enabled} text={config.notification_text} />
       </nav>
 
-      <AdSlot slot="banner_top" config={config} className="mx-auto mt-4 max-w-7xl px-4 text-center text-sm text-[var(--text2)]" />
+      <AdSlot slot="banner_top" config={config} className="mx-auto mt-3 max-w-7xl overflow-hidden px-3 text-center text-sm text-[var(--text2)] sm:px-4" />
 
-      <section className="mx-auto max-w-7xl px-4 pt-8 md:pt-12">
+      <section className="mx-auto max-w-7xl px-3 pt-5 sm:px-4 md:pt-12">
         <div className="grid gap-6 md:grid-cols-[1fr_360px] md:items-end">
           <div>
             <p className="mb-3 w-max rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm text-[var(--text2)]">{profiles.filter((profile) => profile.status === "online").length} online now</p>
-            <h1 className="font-display text-5xl font-black leading-[.95] md:text-7xl">Meet someone who keeps the conversation alive.</h1>
+            <h1 className="font-display text-[2.35rem] font-black leading-[.98] sm:text-5xl md:text-7xl">Meet someone who keeps the conversation alive.</h1>
           </div>
           <div className="glass rounded-[2rem] p-4">
             <label className="flex items-center gap-3 rounded-2xl bg-[var(--surface2)] px-4 py-3">
@@ -63,12 +63,12 @@ export function HomeApp({ profiles, config }: { profiles: Profile[]; config: Pub
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="mt-6 grid grid-cols-1 gap-4 min-[430px]:grid-cols-2 md:mt-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {filtered.map((profile) => <ProfileCard key={profile.id} profile={profile} onPremium={(type, selected) => setPremium({ type, profile: selected })} />)}
         </div>
       </section>
 
-      <div className="fixed inset-x-4 bottom-20 z-20 mx-auto max-w-xl overflow-hidden rounded-2xl md:bottom-4"><AdSlot slot="social_bar" config={config} className="glass p-3 text-center text-sm text-[var(--text2)]" /></div>
+      <div className="fixed inset-x-3 bottom-16 z-20 mx-auto max-w-xl overflow-hidden rounded-2xl md:bottom-4"><AdSlot slot="social_bar" config={config} className="glass max-h-24 overflow-hidden p-2 text-center text-xs text-[var(--text2)] sm:p-3 sm:text-sm" /></div>
       <GlobalAds config={config} />
       <div className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-3 border-t border-[var(--border)] bg-[var(--bg)]/90 py-2 backdrop-blur md:hidden">
         {["Browse", "Likes", "Profile"].map((item) => <button key={item} className="grid place-items-center gap-1 text-xs text-[var(--text2)]"><Heart size={18} />{item}</button>)}
