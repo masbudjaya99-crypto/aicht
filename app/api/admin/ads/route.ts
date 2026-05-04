@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminRequest } from "@/lib/admin-auth";
 import { getPublicConfig } from "@/lib/data";
@@ -16,5 +17,8 @@ export async function POST(request: NextRequest) {
   const slots = new Set(Array.from(form.keys()).map((key) => key.split(":")[0]));
   const rows = Array.from(slots).map((slot) => ({ slot_name: slot, enabled: form.get(`${slot}:enabled`) === "on", ad_code: String(form.get(`${slot}:code`) ?? "") }));
   if (rows.length) await supabase.from("ad_config").upsert(rows, { onConflict: "slot_name" });
+  revalidatePath("/");
+  revalidatePath("/chat/[id]", "page");
+  revalidatePath("/admin/ads");
   return NextResponse.redirect(new URL("/admin/ads", request.url));
 }
