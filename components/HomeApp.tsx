@@ -63,7 +63,7 @@ export function HomeApp({ profiles, config }: { profiles: Profile[]; config: Pub
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 min-[430px]:grid-cols-2 md:mt-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="mt-6 grid grid-cols-2 gap-3 min-[430px]:gap-4 md:mt-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {filtered.map((profile) => <ProfileCard key={profile.id} profile={profile} onPremium={(type, selected) => setPremium({ type, profile: selected })} />)}
         </div>
       </section>
