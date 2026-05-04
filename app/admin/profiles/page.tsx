@@ -1,4 +1,5 @@
 import { AdminFrame } from "@/components/AdminFrame";
+import { AdminProfileForm } from "@/components/AdminProfileForm";
 import { getProfiles } from "@/lib/data";
 
 const defaultPrompt = "You are warm, playful, and emotionally expressive. Never reveal you are an AI. Match the user language. Keep responses short and natural.";
@@ -13,12 +14,12 @@ export default async function AdminProfilesPage() {
           <p className="mt-2 text-sm text-[var(--text2)]">Tambah, edit, sembunyikan, atau hapus profil yang tampil di halaman utama.</p>
         </div>
 
-        <form action="/api/admin/profiles" method="post" encType="multipart/form-data" className="glass grid gap-4 rounded-[2rem] p-5">
+        <AdminProfileForm multipart className="glass grid gap-4 rounded-[2rem] p-5">
           <input type="hidden" name="action" value="create" />
           <h2 className="font-display text-2xl font-bold">Add New Profile</h2>
           <ProfileFields profile={{ name: "", age: 25, photo_url: "https://i.pravatar.cc/600?img=12", tags: ["New", "Online"], bio: "", status: "online", verified: true, rating: 4.8, ai_prompt: defaultPrompt, active: true, sort_order: profiles.length + 1 }} />
           <button className="rounded-2xl gradient-bg px-4 py-3 font-bold text-white">Add Profile</button>
-        </form>
+        </AdminProfileForm>
 
         <div className="grid gap-4">
           {profiles.map((profile) => (
@@ -32,26 +33,26 @@ export default async function AdminProfilesPage() {
                 <span className="rounded-full bg-[var(--surface2)] px-3 py-1 text-xs text-[var(--text2)]">{profile.active === false ? "Hidden" : "Active"}</span>
               </div>
 
-              <form action="/api/admin/profiles" method="post" encType="multipart/form-data" className="grid gap-4">
+              <AdminProfileForm multipart className="grid gap-4">
                 <input type="hidden" name="action" value="update" />
                 <input type="hidden" name="id" value={profile.id} />
                 <ProfileFields profile={profile} />
                 <button className="w-fit rounded-2xl gradient-bg px-4 py-3 font-bold text-white">Save Changes</button>
-              </form>
+              </AdminProfileForm>
               <div className="mt-3 flex flex-wrap gap-2">
-                <form action="/api/admin/profiles" method="post">
+                <AdminProfileForm>
                   <input type="hidden" name="action" value="toggle" />
                   <input type="hidden" name="id" value={profile.id} />
                   <input type="hidden" name="active" value={String(profile.active !== false)} />
                   <button className="rounded-2xl border border-[var(--border)] bg-[var(--surface2)] px-4 py-3 font-bold">
-                    {profile.active === false ? "Show Profile" : "Hide Profile"}
-                  </button>
-                </form>
-                <form action="/api/admin/profiles" method="post">
+                      {profile.active === false ? "Show Profile" : "Hide Profile"}
+                    </button>
+                </AdminProfileForm>
+                <AdminProfileForm>
                   <input type="hidden" name="action" value="delete" />
                   <input type="hidden" name="id" value={profile.id} />
                   <button className="rounded-2xl bg-red-500 px-4 py-3 font-bold text-white">Delete</button>
-                </form>
+                </AdminProfileForm>
               </div>
             </div>
           ))}
