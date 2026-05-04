@@ -24,10 +24,10 @@ export function LimitModal({ config, fingerprint, onClaimed }: { config: PublicC
   }
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-black/75 p-4 backdrop-blur-lg">
-      <div className="glass w-full max-w-sm rounded-[2rem] p-7 text-center">
+    <div className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/75 p-3 backdrop-blur-lg sm:p-4">
+      <div className="glass max-h-[92dvh] w-full max-w-sm overflow-y-auto rounded-[2rem] p-5 text-center sm:p-7">
         <div className="mx-auto mb-4 grid h-20 w-20 animate-float place-items-center rounded-full gradient-bg text-4xl">🎁</div>
-        <h2 className="font-display text-3xl font-black">Dapatkan lebih banyak pesan!</h2>
+        <h2 className="font-display text-2xl font-black sm:text-3xl">Dapatkan lebih banyak pesan!</h2>
         <p className="mt-2 text-[var(--text2)]">Klik untuk lanjut ngobrol - gratis!</p>
         <button onClick={claim} className="mt-6 w-full rounded-2xl gradient-bg px-5 py-4 font-bold text-white shadow-glow">
           {loading ? `Tunggu ${countdown} detik...` : "Klaim Sekarang"}

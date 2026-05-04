@@ -27,7 +27,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
@@ -93,6 +93,13 @@ body::before {
 }
 
 button, input, textarea, select { font: inherit; }
+
+img, iframe, ins { max-width: 100%; }
+
+@media (max-width: 430px) {
+  body::before { opacity: .18; }
+  .ambient::before, .ambient::after { width: 24rem; height: 24rem; filter: blur(60px); }
+}
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--text2) 45%, transparent); border-radius: 999px; }

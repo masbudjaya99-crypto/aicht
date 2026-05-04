@@ -59,24 +59,24 @@ export function ChatApp({ profile, config }: { profile: Profile; config: PublicC
   }
 
   return (
-    <main className="flex h-screen flex-col overflow-hidden">
+    <main className="flex h-dvh flex-col overflow-hidden">
       <header className="z-20 border-b border-[var(--border)] bg-[var(--bg)]/85 backdrop-blur-xl">
-        <div className="flex items-center gap-3 px-3 py-3">
+        <div className="flex items-center gap-2 px-2 py-2.5 sm:gap-3 sm:px-3 sm:py-3">
           <Link href="/" className="grid h-10 w-10 place-items-center rounded-full bg-[var(--surface2)]"><ArrowLeft size={18} /></Link>
           <Image src={profile.photo_url} alt={profile.name} width={44} height={44} className="h-11 w-11 rounded-full object-cover" />
-          <div className="min-w-0 flex-1"><div className="font-display text-xl font-bold">{profile.name}</div><div className="text-xs text-[var(--text2)]"><span className="text-[var(--online)]">●</span> {profile.status === "online" ? "Online" : "Away"}</div></div>
+          <div className="min-w-0 flex-1"><div className="truncate font-display text-lg font-bold sm:text-xl">{profile.name}</div><div className="text-xs text-[var(--text2)]"><span className="text-[var(--online)]">●</span> {profile.status === "online" ? "Online" : "Away"}</div></div>
           <ThemeToggle />
           <button className="grid h-10 w-10 place-items-center rounded-full bg-[var(--surface2)]"><MoreVertical size={18} /></button>
         </div>
-        <AdSlot slot="banner_top" config={config} className="border-t border-[var(--border)] bg-[var(--surface)] p-2 text-center text-sm text-[var(--text2)]" />
+        <AdSlot slot="banner_top" config={config} className="max-h-20 overflow-hidden border-t border-[var(--border)] bg-[var(--surface)] p-1.5 text-center text-xs text-[var(--text2)] sm:p-2 sm:text-sm" />
       </header>
 
-      <section className="flex-1 overflow-y-auto px-3 py-4">
+      <section className="flex-1 overflow-y-auto px-2 py-3 sm:px-3 sm:py-4">
         <div className="mx-auto flex max-w-3xl flex-col gap-3">
           {messages.map((message, index) => (
             <div key={message.id}>
               {index > 0 && index % config.messages_per_ad === 0 ? <div className="my-4 rounded-3xl border border-dashed border-[var(--border)] p-2"><div className="mb-1 text-xs text-[var(--text2)]">Sponsored</div><AdSlot slot="native_in_chat" config={config} className="text-sm text-[var(--text2)]" /></div> : null}
-              <div className={`max-w-[82%] rounded-3xl px-4 py-3 text-sm shadow-lg ${message.role === "user" ? "ml-auto rounded-br-md gradient-bg text-white" : "rounded-bl-md bg-[var(--surface)] text-[var(--text)]"}`}>{message.content}<div className="mt-1 text-[10px] opacity-60">{new Date(message.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div></div>
+              <div className={`max-w-[88%] rounded-3xl px-4 py-3 text-sm shadow-lg sm:max-w-[82%] ${message.role === "user" ? "ml-auto rounded-br-md gradient-bg text-white" : "rounded-bl-md bg-[var(--surface)] text-[var(--text)]"}`}>{message.content}<div className="mt-1 text-[10px] opacity-60">{new Date(message.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div></div>
             </div>
           ))}
           {typing ? <div className="w-max rounded-3xl rounded-bl-md bg-[var(--surface)] px-4 py-3 text-[var(--text2)]">● ● ●</div> : null}
@@ -84,8 +84,8 @@ export function ChatApp({ profile, config }: { profile: Profile; config: PublicC
         </div>
       </section>
 
-      <footer className="border-t border-[var(--border)] bg-[var(--bg)]/90 p-3 backdrop-blur-xl">
-        <AdSlot slot="social_bar" config={config} className="mb-2 rounded-2xl bg-[var(--surface)] p-2 text-center text-sm text-[var(--text2)]" />
+      <footer className="border-t border-[var(--border)] bg-[var(--bg)]/90 p-2 backdrop-blur-xl sm:p-3">
+        <AdSlot slot="social_bar" config={config} className="mb-2 max-h-20 overflow-hidden rounded-2xl bg-[var(--surface)] p-1.5 text-center text-xs text-[var(--text2)] sm:p-2 sm:text-sm" />
         <div className="mx-auto max-w-3xl">
           <div className="mb-2 flex items-center gap-3 text-xs text-[var(--text2)]"><div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--surface2)]"><div className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-yellow-300 to-pink-500" style={{ width: `${progress}%` }} /></div>{limit.remaining}/{limit.total_allowed} remaining</div>
           <div className="flex items-end gap-2 rounded-3xl bg-[var(--surface)] p-2">
