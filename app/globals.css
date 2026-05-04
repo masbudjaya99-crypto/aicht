@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #08080f;
+  --surface: #10101c;
+  --surface2: #17172a;
+  --border: rgba(255, 255, 255, 0.07);
+  --accent: #7b6ef6;
+  --accent2: #f472b6;
+  --text: #f0f0ff;
+  --text2: #8585a8;
+  --online: #4ade80;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f8f8ff;
+  --surface: #ffffff;
+  --surface2: #f0f0fa;
+  --border: rgba(0, 0, 0, 0.08);
+  --text: #1a1a2e;
+  --text2: #6060a0;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  transition: background .3s ease, color .3s ease;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .28;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  z-index: 50;
+}
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.ambient::before,
+.ambient::after {
+  content: "";
+  position: absolute;
+  width: 42rem;
+  height: 42rem;
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: .25;
+}
+
+.ambient::before { background: var(--accent); top: -12rem; left: -10rem; }
+.ambient::after { background: var(--accent2); right: -14rem; bottom: -14rem; }
+
+.glass {
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
+  backdrop-filter: blur(18px);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-bg { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+
+.theme-vars {
+  background: var(--bg);
+  color: var(--text);
+}
+
+button, input, textarea, select { font: inherit; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--text2) 45%, transparent); border-radius: 999px; }

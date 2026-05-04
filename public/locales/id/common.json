@@ -1,0 +1,14 @@
+{
+  "chat_now": "Mulai Chat",
+  "online": "Online",
+  "away": "Pergi sebentar",
+  "unlock_video": "Buka Video Call",
+  "unlock_voice": "Buka Voice Call",
+  "activate_feature": "Aktifkan Fitur Ini",
+  "maybe_later": "Nanti saja",
+  "claim_more": "Dapatkan lebih banyak pesan!",
+  "claim_cta": "Klaim Sekarang",
+  "waiting": "Tunggu {{seconds}} detik...",
+  "type_message": "Tulis pesan...",
+  "search_placeholder": "Cari profil..."
+}

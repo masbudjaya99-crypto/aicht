@@ -1,0 +1,14 @@
+{
+  "chat_now": "Chat Now",
+  "online": "Online",
+  "away": "Away",
+  "unlock_video": "Unlock Video Call",
+  "unlock_voice": "Unlock Voice Call",
+  "activate_feature": "Activate This Feature",
+  "maybe_later": "Maybe later",
+  "claim_more": "Get more messages!",
+  "claim_cta": "Claim Now",
+  "waiting": "Please wait {{seconds}}s...",
+  "type_message": "Type a message...",
+  "search_placeholder": "Search profiles..."
+}
