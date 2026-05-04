@@ -7,6 +7,7 @@ import { NotificationBanner } from "@/components/NotificationBanner";
 import { ProfileCard } from "@/components/ProfileCard";
 import { PremiumModal } from "@/components/PremiumModal";
 import { AdSlot } from "@/components/AdSlot";
+import { GlobalAds } from "@/components/GlobalAds";
 import type { Profile, PublicConfig } from "@/types";
 
 const chips = ["All Online", "New", "Popular", "Verified"];
@@ -43,6 +44,8 @@ export function HomeApp({ profiles, config }: { profiles: Profile[]; config: Pub
         <NotificationBanner enabled={config.notification_enabled} text={config.notification_text} />
       </nav>
 
+      <AdSlot slot="banner_top" config={config} className="mx-auto mt-4 max-w-7xl px-4 text-center text-sm text-[var(--text2)]" />
+
       <section className="mx-auto max-w-7xl px-4 pt-8 md:pt-12">
         <div className="grid gap-6 md:grid-cols-[1fr_360px] md:items-end">
           <div>
@@ -66,6 +69,7 @@ export function HomeApp({ profiles, config }: { profiles: Profile[]; config: Pub
       </section>
 
       <div className="fixed inset-x-4 bottom-20 z-20 mx-auto max-w-xl overflow-hidden rounded-2xl md:bottom-4"><AdSlot slot="social_bar" config={config} className="glass p-3 text-center text-sm text-[var(--text2)]" /></div>
+      <GlobalAds config={config} />
       <div className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-3 border-t border-[var(--border)] bg-[var(--bg)]/90 py-2 backdrop-blur md:hidden">
         {["Browse", "Likes", "Profile"].map((item) => <button key={item} className="grid place-items-center gap-1 text-xs text-[var(--text2)]"><Heart size={18} />{item}</button>)}
       </div>

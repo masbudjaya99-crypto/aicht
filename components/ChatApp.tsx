@@ -6,6 +6,7 @@ import { ArrowLeft, MoreVertical, Paperclip, Send, Smile } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AdSlot } from "@/components/AdSlot";
+import { GlobalAds } from "@/components/GlobalAds";
 import { LimitModal } from "@/components/LimitModal";
 import type { ChatMessage, LimitStatus, Profile, PublicConfig } from "@/types";
 
@@ -95,6 +96,7 @@ export function ChatApp({ profile, config }: { profile: Profile; config: PublicC
           </div>
         </div>
       </footer>
+      <GlobalAds config={config} />
       {showClaim && !claimedOnce ? <LimitModal config={config} fingerprint={fingerprint} onClaimed={() => { setShowClaim(false); fetch(`/api/limit?fp=${encodeURIComponent(fingerprint)}`).then((response) => response.json()).then(setLimit); }} /> : null}
     </main>
   );
